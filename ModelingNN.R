@@ -16,7 +16,6 @@ library("neuralnet")
 #***
 Comp_data = read_excel("C://Users//Sara Benson//Documents//Masters Project//PeptideMaster.xlsx")
 Comp_data <- Comp_data[!duplicated(Comp_data), ]
-library(randomForest)
 require(caTools)
 
 Comp_dataMIC1 = Comp_data[,2:15]
