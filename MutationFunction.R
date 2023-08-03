@@ -17,43 +17,53 @@ library("openxlsx")
 
 # calling the file based on the generation running at the moment 
 #***
-fname1 = paste0("C://Users//Sara Benson//Documents//Masters Project//Grant//Autotest//Gen",gen, "data.xlsx")
-data = read_excel(fname1)
-mut_rate = 75
+fname1 <- paste0("C://Users//Sara Benson//Documents//Masters Project//Grant//Autotest//Gen",gen, "data.xlsx")
+data <- read_excel(fname1)
+mut_rate <- 75 #Mutation rate that can be editted
 
+#Adding each amino acid to be called
 aa2 = c("A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y","")
+ 
+seq = data[,1] 
 
-
-seq = data[,1]
-
+#Creates 10 copies of each sequence
 dtcopy <- data.frame(seq[rep(1:nrow(seq), each = 10), ])
 
 colnames(dtcopy) <- c("Sequence")
 
-loading = data.frame(matrix(nrow = nrow(dtcopy),ncol=nchar(dtcopy[1,1])))
+#Creates matrix of the amino acids
+loading = data.frame(matrix(nrow = nrow(dtcopy),ncol=nchar(dtcopy[1,1])))  
 substr(dtcopy[1,1],1,1)
 
+#Fills the matrix created with each positional amino acid, needs to loop over each row and column
 for(k in 1:nrow(dtcopy)){
   for(i in 1:nchar(dtcopy[1,1])){
     loading[k,i] = substr(dtcopy[k,1],i,i)
   }
 }
 
+#Crossing over the sequences, not above .1
 p = crossover(loading,prob = .050)
 
+#Generates dataframe of sequences  
 pclean = data.frame(do.call(paste, as.data.frame(p, stringsAsFactors=FALSE)))
 dtcopy = pclean
 
+#Turns sequences into a string
 dtcopy = data.frame(apply(dtcopy,2,str_remove_all, " "))
 
+#???
 ran.x  = sample(1:ncol(p),mut_rate,replace=T)
 ran.y  = sample(1:nrow(p),mut_rate,replace=T)
 ran.n = sample(aa2,mut_rate,replace=T)
 
+#Putting sequences into FASTA format ???
 for (j in 1:mut_rate){
   p[ran.y[j],ran.x[j]] = ran.n[j]
   
 }
+
+
 pclean = data.frame(do.call(paste, as.data.frame(p, stringsAsFactors=FALSE)))
 dtcopy = pclean
 
