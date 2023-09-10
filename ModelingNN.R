@@ -69,7 +69,7 @@ predNN = predict(NN, newdata=data.frame(newdata))
 gen.M = data.frame(predNNnew)
 library(writexl)
 
- #Choosing top 10 sequences  
+#Choosing top 10 sequences  
 choose = 10 
 gen.total = data.frame(c(gen.S,gen.M))
 gen.total = gen.total[order(-gen.total$predNNnew),]
