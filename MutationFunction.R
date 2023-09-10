@@ -52,17 +52,15 @@ dtcopy = pclean
 #Turns sequences into a string
 dtcopy = data.frame(apply(dtcopy,2,str_remove_all, " "))
 
-#???
 ran.x  = sample(1:ncol(p),mut_rate,replace=T)
 ran.y  = sample(1:nrow(p),mut_rate,replace=T)
 ran.n = sample(aa2,mut_rate,replace=T)
 
-#Putting sequences into FASTA format ???
+#Putting sequences into FASTA format 
 for (j in 1:mut_rate){
   p[ran.y[j],ran.x[j]] = ran.n[j]
   
 }
-
 
 pclean = data.frame(do.call(paste, as.data.frame(p, stringsAsFactors=FALSE)))
 dtcopy = pclean
