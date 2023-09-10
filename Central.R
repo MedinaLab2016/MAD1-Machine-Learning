@@ -6,7 +6,7 @@
 #***
 source("C://Users//Sara Benson//Documents//Masters Project//Automated Program//MutationFunction.R")
 source("C://Users//Sara Benson//Documents//Masters Project//Automated Program//Automation.R")
-source("C://Users//Sara Benson//Documents//Masters Project//Automated Program//ModelingNN.R") #***This line needs changed for either RF or NN
+source("C://Users//Sara Benson//Documents//Masters Project//Automated Program//ModelingNN.R") #***This line needs changed for either ModelingRF or ModelingNN document
 
 gen=0
 totalgen=50 #***enter the total number of generations you want to run here 
